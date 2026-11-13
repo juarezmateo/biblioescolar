@@ -1,0 +1,6 @@
+{
+  "name": "biblioescolar",
+  "version": "1.0.0",
+  "scripts": { "test": "node --test", "start": "node src/server.js" },
+  "dependencies": { "express": "^4.19.2" }
+}
