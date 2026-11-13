@@ -7,7 +7,7 @@ BiblioEscolar: préstamos de biblioteca escolar. Ver `docs/idea.md`.
 `docs/spec.md` manda sobre todo lo demás. Si algo no está en la spec, se pregunta; no se inventa.
 
 ## Stack
-Node.js + Express (backend), tests con `node --test`. Frontend: React + Vite. Base de datos: PostgreSQL en Neon (cuando se conecte).
+Node.js + Express (backend, también sirve el frontend). Frontend: HTML + JavaScript sin framework (carpeta public/). Tests con `node --test`. Base de datos: PostgreSQL en Neon (pendiente, T9).
 
 ## Reglas generales
 - Cada regla del código cita su RN en un comentario.

@@ -1,0 +1,361 @@
+{
+  "info": {
+    "name": "BiblioEscolar",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Login bibliotecario",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"rol\": \"bibliotecario\",\n  \"clave\": \"biblio123\"\n}"
+        },
+        "url": {
+          "raw": "{{base}}/api/login",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "api",
+            "login"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"login ok\",()=>pm.response.to.have.status(200));",
+              "pm.collectionVariables.set(\"token\", pm.response.json().token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Catálogo",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base}}/api/libros",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "api",
+            "libros"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Prestar libro",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"alumnoId\": \"1001\",\n  \"libroId\": \"L1\"\n}"
+        },
+        "url": {
+          "raw": "{{base}}/api/prestamos",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "api",
+            "prestamos"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Prestar mismo libro a otro (409)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"alumnoId\": \"1002\",\n  \"libroId\": \"L1\"\n}"
+        },
+        "url": {
+          "raw": "{{base}}/api/prestamos",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "api",
+            "prestamos"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Reservar (como bibliotecario)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"alumnoId\": \"1002\",\n  \"libroId\": \"L1\"\n}"
+        },
+        "url": {
+          "raw": "{{base}}/api/reservas",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "api",
+            "reservas"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Préstamos activos",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base}}/api/prestamos",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "api",
+            "prestamos"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Devolver préstamo 1",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base}}/api/prestamos/1/devolver",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "api",
+            "prestamos",
+            "1",
+            "devolver"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Alumnos",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base}}/api/alumnos",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "api",
+            "alumnos"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Alta de libro",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"titulo\": \"Libro nuevo\",\n  \"autor\": \"Autor\",\n  \"cantidad\": 2\n}"
+        },
+        "url": {
+          "raw": "{{base}}/api/libros",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "api",
+            "libros"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Alta de libro inválido (400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"titulo\": \"X\",\n  \"autor\": \"Y\",\n  \"cantidad\": 0\n}"
+        },
+        "url": {
+          "raw": "{{base}}/api/libros",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "api",
+            "libros"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Adelantar reloj 8 días",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"dias\": 8\n}"
+        },
+        "url": {
+          "raw": "{{base}}/api/demo/avanzar",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "api",
+            "demo",
+            "avanzar"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Sin token (401)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base}}/api/prestamos",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "api",
+            "prestamos"
+          ]
+        }
+      }
+    }
+  ]
+}

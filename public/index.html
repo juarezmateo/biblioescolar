@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BiblioEscolar</title>
+<style>
+  :root { --verde:#2e7d5b; --gris:#f3f5f4; --texto:#1d2b25; --rojo:#b3261e; --amarillo:#fff3c4; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui, sans-serif; margin:0; background:var(--gris); color:var(--texto); }
+  header { background:var(--verde); color:#fff; padding:12px 20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
+  header h1 { font-size:1.2rem; margin:0; }
+  main { max-width:960px; margin:20px auto; padding:0 14px; }
+  nav { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:14px; }
+  nav button.activa { background:var(--verde); color:#fff; }
+  button { padding:7px 12px; border:1px solid var(--verde); background:#fff; color:var(--verde); border-radius:6px; cursor:pointer; font-size:.92rem; }
+  button.principal { background:var(--verde); color:#fff; }
+  button.peligro { border-color:var(--rojo); color:var(--rojo); }
+  section, .tarjeta { background:#fff; border-radius:10px; padding:16px; margin-bottom:14px; box-shadow:0 1px 3px #0002; }
+  table { width:100%; border-collapse:collapse; font-size:.93rem; }
+  th, td { text-align:left; padding:8px 6px; border-bottom:1px solid #e3e8e5; }
+  th { background:var(--gris); }
+  input, select { padding:7px; border:1px solid #b9c4be; border-radius:6px; font-size:.95rem; }
+  form { display:flex; gap:8px; flex-wrap:wrap; align-items:end; }
+  label { display:flex; flex-direction:column; font-size:.82rem; gap:3px; }
+  .aviso { background:var(--amarillo); padding:10px; border-radius:8px; margin-bottom:12px; }
+  .error { background:#fde7e5; color:var(--rojo); padding:10px; border-radius:8px; margin-bottom:12px; }
+  .ok { background:#e2f4ea; padding:10px; border-radius:8px; margin-bottom:12px; }
+  .etiqueta { padding:2px 8px; border-radius:10px; font-size:.78rem; background:#e3e8e5; }
+  .etiqueta.roja { background:#fde7e5; color:var(--rojo); }
+  .etiqueta.verde { background:#e2f4ea; color:var(--verde); }
+  .tabla-scroll { overflow-x:auto; }
+</style>
+</head>
+<body>
+<header><h1>📚 BiblioEscolar</h1><div id="barra"></div></header>
+<main><div id="mensaje"></div><div id="app"></div></main>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

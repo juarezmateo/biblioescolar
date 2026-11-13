@@ -7,6 +7,7 @@ Manejar préstamos, devoluciones y reservas de la biblioteca del colegio con reg
 Bibliotecario y alumno.
 
 ## Reglas de negocio
+
 - **RN1** Un préstamo dura 7 días.
 - **RN2** Un alumno puede tener como máximo 3 préstamos activos.
 - **RN3** No se pueden prestar más ejemplares de los que hay disponibles.
@@ -23,6 +24,7 @@ Bibliotecario y alumno.
 - **RN14** Solo el bibliotecario registra préstamos y devoluciones.
 
 ## Historias de usuario
+
 - **HU1** Como bibliotecario quiero registrar un préstamo.
   - Dado un alumno sin sanción y con lugar, cuando presto un libro disponible, entonces queda activo por 7 días (RN1, RN2, RN3).
   - Dado un alumno con 3 préstamos, cuando intento prestar, entonces me rechaza (RN2).
@@ -41,6 +43,7 @@ Bibliotecario y alumno.
 - **HU7** Como alumno quiero ver el catálogo y mis préstamos.
 
 ## Casos borde
+
 - Devolver justo en la fecha de vencimiento: no hay atraso.
 - Dos alumnos que piden el último ejemplar: el segundo recibe error (RN3).
 - Reserva lista de otro alumno: el ejemplar guardado no cuenta como disponible.
