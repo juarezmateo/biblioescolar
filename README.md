@@ -2,9 +2,8 @@
 
 Sistema de préstamos y reservas para la biblioteca de un colegio secundario.
 
-## Link público
-- Frontend: *(completar cuando se publique en Netlify)*
-- Backend: *(completar cuando se publique en Render)*
+
+
 
 ## Cómo correrlo
 ```
